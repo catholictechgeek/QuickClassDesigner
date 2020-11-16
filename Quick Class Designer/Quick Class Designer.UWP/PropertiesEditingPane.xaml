@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="Quick_Class_Designer.UWP.PropertiesEditingPane"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Quick_Class_Designer.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <local:ReverseBoolean x:Key="reverse" />
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource SubheaderTextBlockStyle}" Text="Add New Property" />
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Access Modifier" />
+        <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0">
+            <ComboBoxItem Content="public" />
+            <ComboBoxItem Content="internal" />
+            <ComboBoxItem Content="private" />
+        </ComboBox>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Name" />
+        <TextBox Name="propertyname"  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" PlaceholderText="Name of Property" />
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="Type" />
+        <AutoSuggestBox Grid.Row="3" Grid.Column="1" PlaceholderText="Property Type" UpdateTextOnSelect="True" />
+        <CheckBox Grid.Row="4" Grid.Column="0" Name="getinclude" Content="Include Getter?" Unchecked="getinclude_Unchecked" />
+        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="1" IsEnabled="{Binding IsChecked, ElementName=getinclude}">
+            <ComboBoxItem Content="public" />
+            <ComboBoxItem Content="internal" />
+            <ComboBoxItem Content="private" />
+        </ComboBox>
+        <CheckBox Grid.Row="5" Margin="40,0" IsEnabled="{Binding IsChecked, ElementName=getinclude}" Content="Custom Getter?" />
+        <CheckBox Grid.Row="6" Grid.Column="0" Name="setinclude" Content="Include Setter?" Unchecked="setinclude_Unchecked" />
+        <ComboBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="1" IsEnabled="{Binding IsChecked, ElementName=setinclude}">
+            <ComboBoxItem Content="public" />
+            <ComboBoxItem Content="internal" />
+            <ComboBoxItem Content="private" />
+        </ComboBox>
+        <CheckBox Grid.Row="7" Margin="40,0" IsEnabled="{Binding IsChecked, ElementName=setinclude}" Content="Custom Setter?" />
+        <CheckBox Grid.Row="8" x:Name="serilizecheck" Content="Can Serialize?" Unchecked="serilizecheck_Unchecked_1" />
+        <CheckBox Grid.Row="9" Grid.Column="0" Margin="40,0" x:Name="serilizelabel" Content="Serialize as: " IsEnabled="{Binding IsChecked, ElementName=serilizecheck}" Unchecked="serilizecheck_Unchecked" />
+        <TextBox x:Name="serializename" Grid.Row="9" Grid.Column="1" IsEnabled="{Binding IsChecked, ElementName=serilizecheck}" IsReadOnly="{Binding IsChecked, ElementName=serilizelabel, Converter={StaticResource reverse}}" PlaceholderText="{Binding Text,ElementName=propertyname}" />
+        <Button Grid.Row="10" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Content="Save Changes" Click="Button_Click" />
+    </Grid>
+</Page>

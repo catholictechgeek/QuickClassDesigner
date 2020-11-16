@@ -1,0 +1,48 @@
+﻿<UserControl
+    x:Class="Quick_Class_Designer.UWP.EditControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Quick_Class_Designer.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Normal Text" Grid.Column="0" />
+            <TextBlock Text="Normal Text" Grid.Column="1" />
+            <TextBlock Text="Type" Grid.Column="2" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="4">
+                <ComboBoxItem Content="public" />
+                <ComboBoxItem Content="private" />
+                <ComboBoxItem Content="internal"/>
+                <ComboBoxItem Content="protected" />
+                <ComboBoxItem Content="protected internal" />
+            </ComboBox>
+            <TextBox Grid.Column="1" PlaceholderText="Variable Name" />
+            <AutoSuggestBox x:Name="typebox" Grid.Column="2" PlaceholderText="Variable Type" UpdateTextOnSelect="True" SuggestionChosen="AutoSuggestBox_SuggestionChosen" FocusDisengaged="AutoSuggestBox_FocusDisengaged" />
+            <Button Grid.Column="3" Click="Button_Click">
+                <SymbolIcon Symbol="Accept" />
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>
